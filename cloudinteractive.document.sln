@@ -5,6 +5,11 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cloudinteractive.document", "cloudinteractive.document\cloudinteractive.document.csproj", "{169C4B68-11FA-4901-953C-289EF631C8ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentTestApp", "DocumentTestApp\DocumentTestApp.csproj", "{30D86F1C-7B5A-443C-BE3C-A4908BADF951}"
+	ProjectSection(ProjectDependencies) = postProject
+		{169C4B68-11FA-4901-953C-289EF631C8ED} = {169C4B68-11FA-4901-953C-289EF631C8ED}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{169C4B68-11FA-4901-953C-289EF631C8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{169C4B68-11FA-4901-953C-289EF631C8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{169C4B68-11FA-4901-953C-289EF631C8ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D86F1C-7B5A-443C-BE3C-A4908BADF951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D86F1C-7B5A-443C-BE3C-A4908BADF951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D86F1C-7B5A-443C-BE3C-A4908BADF951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D86F1C-7B5A-443C-BE3C-A4908BADF951}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
