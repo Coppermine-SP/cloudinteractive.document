@@ -22,3 +22,17 @@ This project should only be used as an auxiliary tool. Generative AI is not a so
 **Please agree to the responsible use of Generative AI before utilizing this tool.**
 
 ## How to Use
+**Currently, this library only works in Windows.** 
+> System.Drawing is not supported in non-Windows platforms.
+> 
+> Alternatively, you can change project target framework to .NET 6 and enable System.Drawing support for non-Windows platforms by setting `System.Drawing.EnableUnixSupport` runtime configuration switch to `true` in the runtimeconfig.json file.
+> 
+> It is untested and not recommended.
+>
+> For more information, please check out this [Microsoft documentation](https://aka.ms/systemdrawingnonwindows).
+
+## Dependencies
+* [Ghostscript.NET](https://www.nuget.org/packages/Ghostscript.NET/1.2.3.1?_src=template) - AGPL 3.0 License
+* [Microsoft.Azure.CongitiveServices.Vision.ComputerVision](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/7.0.1?_src=template) - MIT License
+* [OpenAI](https://www.nuget.org/packages/OpenAI/1.10.0?_src=template) - CC0-1.0 License
+* [System.Drawing.Common](https://www.nuget.org/packages/System.Drawing.Common/8.0.0?_src=template) - MIT License
