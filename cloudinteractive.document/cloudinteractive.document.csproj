@@ -4,7 +4,23 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>cloudinteractive.document</Title>
+    <Version>0.1.0</Version>
+    <Authors>Coppermine-SP</Authors>
+    <Company>CloudInteractive Inc.</Company>
+    <Copyright>Copyright (C) 2024 CloudInteractive.</Copyright>
+    <Description>OCR and Integrate ChatGPT into your documents via C#.</Description>
+    <PackageProjectUrl>https://github.com/Coppermine-SP/cloudinteractive.document</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Coppermine-SP/cloudinteractive.document</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Ghostscript.NET" Version="1.2.3.1" />
