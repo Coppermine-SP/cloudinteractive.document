@@ -11,7 +11,7 @@ namespace cloudinteractive.document
 
         public static async Task<PdfDocument> ImportFromFile(string filename, int[]? pages = null, int dpi = 150)
         {
-            using var file = File.OpenRead(filename);
+            await using var file = File.OpenRead(filename);
             return await ImportFromStream(file, pages, dpi);
         }
 
