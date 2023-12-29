@@ -17,7 +17,7 @@ namespace cloudinteractive.document.Util
             _maxLength = maxLength;
         }
 
-        public static async Task<string> GetChatCompletionAsync(string prompt, string[] document, Model model)
+        public static async Task<string> GetChatCompletion(string prompt, string[] document, Model model)
         {
             if (_key == null) throw new InvalidOperationException("OpenAI module is not initialized.");
             var builder = new StringBuilder();
