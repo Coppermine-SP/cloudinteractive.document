@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices.ComTypes;
 using cloudinteractive.document;
+using cloudinteractive.document.Util;
+using OpenAI_API.Models;
+
 namespace DocumentTestApp
 {
     internal class Program
@@ -49,6 +52,7 @@ namespace DocumentTestApp
 
             //Azure Init
             cloudinteractive.document.Util.AzureComputerVision.Init(_azureEndpoint, _azureKey);
+            cloudinteractive.document.Util.OpenAI.Init(_openAIKey);
             Util.ConsolePrint(Util.PrintType.Info, "Microsoft Azure ComputerVision Service Init..");
 
             //대상 파일과 페이지 받아오기
@@ -56,8 +60,7 @@ namespace DocumentTestApp
             int[]? pages = null;
             if (Util.ConsoleInputBool("Do you want to specify particular pages from the provided document"))
             {
-                try
-                {
+                try{
                     string input = Util.ConsoleInput("Enter pages separated by spaces");
                     pages = Array.ConvertAll(input.Split(' '), int.Parse);
                 }
@@ -90,6 +93,15 @@ namespace DocumentTestApp
                     Console.WriteLine(text);
                     idx++;
                 }
+
+                var prompt = Util.ConsoleInput("Enter a prompt for process the document via ChatGPT");
+                Util.ConsolePrint(Util.PrintType.Info, "Processing the document with the presented prompt via ChatGPT : Waiting for OpenAI API response..");
+
+                var response = OpenAI.GetChatCompletionAsync(prompt, texts, Model.GPT4_Turbo).Result;
+                Util.ConsolePrint(Util.PrintType.Info, "Complete!");
+                Util.ConsolePrint(Util.PrintType.Info, "Response from ChatGPT: ");
+                Console.WriteLine(response);
+                Util.ConsoleExit();
 
             }
             catch (Exception e)
