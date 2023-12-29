@@ -3,7 +3,7 @@
 
 Export text from PDF documents via Microsoft Azure Cognitive Service and process text via OpenAI ChatGPT. 
 
-(A fork of C# version of [cloudinteractive-ai-insights](https://github.com/Coppermine-SP/cloudinteractive-ai-insights))
+(A C# fork of [cloudinteractive-ai-insights](https://github.com/Coppermine-SP/cloudinteractive-ai-insights))
 
 ### Table of Contents
 - [Responsible use of Generative AI](#responsible-use-of-generative-ai)
