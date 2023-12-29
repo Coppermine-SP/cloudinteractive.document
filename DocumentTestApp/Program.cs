@@ -97,7 +97,7 @@ namespace DocumentTestApp
                 var prompt = Util.ConsoleInput("Enter a prompt for process the document via ChatGPT");
                 Util.ConsolePrint(Util.PrintType.Info, "Processing the document with the presented prompt via ChatGPT : Waiting for OpenAI API response..");
 
-                var response = OpenAI.GetChatCompletionAsync(prompt, texts, Model.GPT4_Turbo).Result;
+                var response = OpenAI.GetChatCompletion(prompt, texts, Model.GPT4_Turbo).Result;
                 Util.ConsolePrint(Util.PrintType.Info, "Complete!");
                 Util.ConsolePrint(Util.PrintType.Info, "Response from ChatGPT: ");
                 Console.WriteLine(response);
