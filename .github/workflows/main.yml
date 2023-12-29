@@ -1,0 +1,30 @@
+name: Build and Publish at NuGet
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_and_publish_csharp:
+    runs-on: ubuntu-latest
+    env:
+      NUGET_TOKEN: ${{ secrets.NUGET_UPLOAD_KEY }}
+      PROJECT_NAME: cloudinteractive.document
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Build
+        run: |
+          dotnet build -c Release "./${{ env.PROJECT_NAME }}"
+
+      - name: Publish to NuGet
+        run: |
+          dotnet pack -c Release "./${{ env.PROJECT_NAME }}"
+          dotnet nuget push ./${{ env.PROJECT_NAME }}/bin/Release/${{ env.PROJECT_NAME }}.*.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_TOKEN
+          

@@ -101,7 +101,10 @@ A CLI demo application is included in this project.
 
 You can evaluate this library and get sample code through this demo application.
 
-
+<img src="images/sample_document.png">
+<img src="images/demo_1.png">
+<img src="images/demo_2.png">
+<img src="images/demo_3.png">
 ## Dependencies
 * [Ghostscript.NET](https://www.nuget.org/packages/Ghostscript.NET/1.2.3.1?_src=template) - AGPL 3.0 License
 * [Microsoft.Azure.CongitiveServices.Vision.ComputerVision](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/7.0.1?_src=template) - MIT License
