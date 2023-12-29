@@ -31,6 +31,7 @@ namespace cloudinteractive.document
                 images.Add(stream.ToArray());
             }
 
+            file.Close();
             return new PdfDocument()
             {
                 Images = images.ToArray()

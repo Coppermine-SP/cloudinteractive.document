@@ -20,7 +20,7 @@ namespace DocumentTestApp
         {
             Console.WriteLine("cloudinteractive.document - Test application\nCopyright (C) 2024 CloudInteractive Inc.\n\n");
 
-
+            //자격 증명 받아오기
             bool usingAutoCredential =
                 Util.ConsoleInputBool("Do you want to get credentials automatically via CloudInteractive Credential Server?");
 
@@ -47,19 +47,44 @@ namespace DocumentTestApp
                 _openAIKey = Util.ConsoleInput("Enter your OpenAI API Key");
             }
 
+            //Azure Init
             cloudinteractive.document.Util.AzureComputerVision.Init(_azureEndpoint, _azureKey);
             Util.ConsolePrint(Util.PrintType.Info, "Microsoft Azure ComputerVision Service Init..");
 
-            var document =
-                //PdfDocument.ImportFromFile("C:\\Users\\Coppermine\\Downloads\\공군 전문특기병(IT개발관리병) 지원자격 및 선발기준.pdf").Result;
-                //PdfDocument.ImportFromFile("X:\\Personal\\창원대학교\\2023\\2023 정보통신공학개론\\2020 기말고사 범위 내용 요약.pdf", new int[]{3}).Result;
-                PdfDocument.ImportFromFile("X:\\ePub\\으뜸 파이썬.pdf", new int[] { 204 }).Result;
-                //PdfDocument.ImportFromFile("X:\\ePub\\스튜어트 미분적분학 9E.pdf", new int[] { 455 }).Result;
+            //대상 파일과 페이지 받아오기
+            var location = Util.ConsoleInput("Enter a PDF document file location");
+            int[]? pages = null;
+            if (Util.ConsoleInputBool("Do you want to specify particular pages from the provided document"))
+            {
+                try
+                {
+                    string input = Util.ConsoleInput("Enter page numbers separated by spaces");
+                    pages = Array.ConvertAll(input.Split(' '), int.Parse);
+                }
+                catch
+                {
+                    Util.ConsolePrint(Util.PrintType.Error, "Exception on parse page numbers.");
+                    Util.ConsoleExit();
+                }
+            }
 
-            var texts = cloudinteractive.document.Util.AzureComputerVision.ExportTextFromDocument<PdfDocument>(document).Result;
+            //페이지 로드
+            Util.ConsolePrint(Util.PrintType.Info, "Loading document file...");
+            var document =
+                PdfDocument.ImportFromFile(location, pages).Result;
+
+            Util.ConsolePrint(Util.PrintType.Info, "Exporting text from document via Microsoft Azure Cognitive Services...");
+            var texts = cloudinteractive.document.Util.AzureComputerVision.ExportTextFromDocument(document).Result;
+
+            Util.ConsolePrint(Util.PrintType.Info, "Complete!");
+
+            //OCR 결과 출력
+            int idx = 0;
             foreach (string text in texts)
             {
+                Util.ConsolePrint(Util.PrintType.Info, $"Page {idx}:");
                 Console.WriteLine(text);
+                idx++;
             }
             
         }

@@ -21,7 +21,7 @@ namespace cloudinteractive.document.Util
             _isInited = true;
         }
 
-        public static async Task<string[]> ExportTextFromDocument<T>(T document) where T:IExportableDocument
+        public static async Task<string[]> ExportTextFromDocument(IExportableDocument document)
         {
             using var client = new ComputerVisionClient(new ApiKeyServiceClientCredentials(_key))
             {
