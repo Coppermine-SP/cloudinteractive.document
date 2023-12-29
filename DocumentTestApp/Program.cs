@@ -58,7 +58,7 @@ namespace DocumentTestApp
             {
                 try
                 {
-                    string input = Util.ConsoleInput("Enter page numbers separated by spaces");
+                    string input = Util.ConsoleInput("Enter pages separated by spaces");
                     pages = Array.ConvertAll(input.Split(' '), int.Parse);
                 }
                 catch
@@ -68,25 +68,36 @@ namespace DocumentTestApp
                 }
             }
 
-            //페이지 로드
-            Util.ConsolePrint(Util.PrintType.Info, "Loading document file...");
-            var document =
-                PdfDocument.ImportFromFile(location, pages).Result;
-
-            Util.ConsolePrint(Util.PrintType.Info, "Exporting text from document via Microsoft Azure Cognitive Services...");
-            var texts = cloudinteractive.document.Util.AzureComputerVision.ExportTextFromDocument(document).Result;
-
-            Util.ConsolePrint(Util.PrintType.Info, "Complete!");
-
-            //OCR 결과 출력
-            int idx = 0;
-            foreach (string text in texts)
-            {
-                Util.ConsolePrint(Util.PrintType.Info, $"Page {idx}:");
-                Console.WriteLine(text);
-                idx++;
-            }
             
+            try
+            {
+                //페이지 로드
+                Util.ConsolePrint(Util.PrintType.Info, "Loading document file...");
+                var document =
+                    PdfDocument.ImportFromFile(location, pages).Result;
+
+                //문서 OCR
+                Util.ConsolePrint(Util.PrintType.Info,
+                    "Exporting text from document via Microsoft Azure Cognitive Services...");
+                var texts = cloudinteractive.document.Util.AzureComputerVision.ExportTextFromDocument(document).Result;
+                Util.ConsolePrint(Util.PrintType.Info, "Complete!");
+
+                //OCR 결과 출력
+                int idx = 0;
+                foreach (string text in texts)
+                {
+                    Util.ConsolePrint(Util.PrintType.Info, $"Page {idx}:");
+                    Console.WriteLine(text);
+                    idx++;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Util.ConsolePrint(Util.PrintType.Error, "Exception! : " + e.ToString());
+                Util.ConsoleExit();
+            }
+
         }
     }
 }
