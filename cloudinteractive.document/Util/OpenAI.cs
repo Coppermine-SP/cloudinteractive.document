@@ -10,18 +10,20 @@ namespace cloudinteractive.document.Util
     public static class OpenAI
     {
         private static string? _key;
-        public static void Init(string key)
+        private static int? _maxLength;
+        public static void Init(string key, ushort maxLength=2000)
         {
             _key = key;
+            _maxLength = maxLength;
         }
 
         public static async Task<string> GetChatCompletionAsync(string prompt, string[] document, Model model)
         {
-            const int maxLength = 2000;
+            if (_key == null) throw new InvalidOperationException("OpenAI module is not initialized.");
             var builder = new StringBuilder();
             foreach (string page in document)
             {
-                if (builder.Length < maxLength)
+                if (builder.Length < _maxLength)
                 {
                     builder.Append(page);
                 }
