@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace cloudinteractive.document.Util
 {
-    internal class OpenAI
+    public static class OpenAI
     {
+
     }
 }
