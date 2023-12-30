@@ -13,12 +13,13 @@ Export text from PDF documents via Microsoft Azure Cognitive Service and process
 
 ## Responsible use of Generative AI
 
-[책임감 있는 AI 사용이란 무엇입니까? (국문)](https://github.com/Coppermine-SP/Coppermine-SP/blob/main/ResponsibleUseOfAI_KR.md)
-
-**WARNING:**
-This project should only be used as an auxiliary tool. Generative AI is not a solution provider for your assignment. Relying on this tool to fully complete your assignments is a clear act of cheating. 
-
-**Please agree to the responsible use of Generative AI before utilizing this tool.**
+>[!WARNING]
+> This project should only be used as an auxiliary tool. Generative AI is not a solution provider for your assignment. Relying on this tool to fully complete your assignments is a
+> clear act of cheating.
+>
+> **Please agree to the responsible use of Generative AI before utilizing this tool.**
+>
+> 더 자세한 정보는 다음 문서를 참조하십시오: [책임감 있는 AI 사용이란 무엇입니까? (국문)](https://github.com/Coppermine-SP/Coppermine-SP/blob/main/ResponsibleUseOfAI_KR.md)
 
 ## How to Use
 **Currently, this library only works in Windows.** 
