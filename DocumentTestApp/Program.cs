@@ -55,30 +55,43 @@ namespace DocumentTestApp
             cloudinteractive.document.Util.OpenAI.Init(_openAIKey);
             Util.ConsolePrint(Util.PrintType.Info, "Microsoft Azure ComputerVision Service Init..");
 
-            //대상 파일과 페이지 받아오기
-            var location = Util.ConsoleInput("Enter a PDF document file location");
-            int[]? pages = null;
-            if (Util.ConsoleInputBool("Do you want to specify particular pages from the provided document"))
+            var usingPdf = Util.ConsoleInputBool("Do you want to using PDF file?");
+
+            string location;
+            IExportableDocument document;
+
+            if (usingPdf)
             {
-                try{
-                    string input = Util.ConsoleInput("Enter pages separated by spaces");
-                    pages = Array.ConvertAll(input.Split(' '), int.Parse);
-                }
-                catch
+                //대상 파일과 페이지 받아오기
+                location = Util.ConsoleInput("Enter a PDF document file location");
+                int[]? pages = null;
+                if (Util.ConsoleInputBool("Do you want to specify particular pages from the provided document"))
                 {
-                    Util.ConsolePrint(Util.PrintType.Error, "Exception on parse page numbers.");
-                    Util.ConsoleExit();
+                    try
+                    {
+                        string input = Util.ConsoleInput("Enter pages separated by spaces");
+                        pages = Array.ConvertAll(input.Split(' '), int.Parse);
+                    }
+                    catch
+                    {
+                        Util.ConsolePrint(Util.PrintType.Error, "Exception on parse page numbers.");
+                        Util.ConsoleExit();
+                    }
                 }
+                Util.ConsolePrint(Util.PrintType.Info, "Loading document file...");
+                document = PdfDocument.ImportFromFile(location, pages).Result;
+
+            }
+            else
+            {
+                location = Util.ConsoleInput("Enter a image file location");
+
+                Util.ConsolePrint(Util.PrintType.Info, "Loading document file...");
+                document = ImageDocument.ImportFromFile(location).Result;
             }
 
-            
             try
             {
-                //페이지 로드
-                Util.ConsolePrint(Util.PrintType.Info, "Loading document file...");
-                var document =
-                    PdfDocument.ImportFromFile(location, pages).Result;
-
                 //문서 OCR
                 Util.ConsolePrint(Util.PrintType.Info,
                     "Exporting text from document via Microsoft Azure Cognitive Services...");
